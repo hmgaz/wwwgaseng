@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from pto_objekt.models import osnovanie , objekt, regulir_ustroystvo, uzel, tap, pipe, consumer, track#, sector 
+from pto_objekt.models import osnovanie , objekt, regulir_ustroystvo, uzel, tap, pipe, consumer, track , sector 
 from django.contrib.admin.helpers import Fieldset
 
 class OsnovanieAdmin(admin.ModelAdmin):
@@ -30,9 +30,9 @@ class trackInline(admin.TabularInline):
     model = track
     extra = 0
     
-#class sectorInline(admin.TabularInline):
-#    model = sector
-#    extra = 0
+class sectorInline(admin.TabularInline):
+    model = sector
+    extra = 0
 
     
 class ObjektAdmin(admin.ModelAdmin):
@@ -56,7 +56,7 @@ class ObjektAdmin(admin.ModelAdmin):
                 
     ]
     inlines = [regulir_ustroystvoInline, uzelInline, tapInline, pipeInline, consumerInline, 
-               trackInline]
+               trackInline, sectorInline]
      
     
 class regulir_ustroystvoAdmin(admin.ModelAdmin):
@@ -75,11 +75,11 @@ class consumerAdmin(admin.ModelAdmin):
     list_display = ('ge_objekt', 'ge_naimen')
 
 class trackAdmin(admin.ModelAdmin):
-    list_display = ('content_type', 'ge_naimen')
-   # inlines = [sectorInline] 
-       
-#class sectorAdmin(admin.ModelAdmin):
-#    list_display = ('ge_objekt', 'ge_naimen')
+    list_display = ('ge_objekt', 'ge_naimen')
+    inlines = [sectorInline]
+          
+class sectorAdmin(admin.ModelAdmin):
+    list_display = ('ge_objekt', 'ge_naimen')
     
 admin.site.register(osnovanie, OsnovanieAdmin)
 admin.site.register(objekt, ObjektAdmin)
@@ -89,5 +89,5 @@ admin.site.register(tap, tapAdmin)
 admin.site.register(pipe, pipeAdmin)
 admin.site.register(consumer, consumerAdmin)
 admin.site.register(track, trackAdmin)
-#admin.site.register(sector, sectorAdmin)
+admin.site.register(sector, sectorAdmin)
 # Register your models here.

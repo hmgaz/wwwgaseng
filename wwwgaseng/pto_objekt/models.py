@@ -74,6 +74,8 @@ class regulir_ustroystvo(models.Model):
     ge_nomer = models.CharField(u'Номер (литера) ', max_length=20)
     ge_regulir_ustroystvo = models.ForeignKey(spr_regulir_ustroystvo, verbose_name = 
                                               u'Регулирующее устройство')
+    def __unicode__(self):
+        return self.ge_nomer
     
 class uzel(models.Model):
     ge_objekt = models.ForeignKey('objekt', verbose_name = u'Обьект')
@@ -107,15 +109,17 @@ class consumer(models.Model):
     ge_naimen = models.CharField(u'Наименование ', max_length=100)
     
 class track(models.Model):
-    content_type = models.ForeignKey(ContentType, verbose_name = u'Обьект')
+    ge_objekt = models.ForeignKey('objekt', verbose_name = u'Обьект')
     ge_naimen = models.CharField(u'Наименование ', max_length=100)
-    object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey('content_type', 'object_id')
-    
+        
     def __unicode__(self):
         return self.ge_naimen
     
-#class sector(models.Model):
-#    ge_objekt = models.ForeignKey('track', verbose_name = u'Трасса')
-#    ge_naimen = models.CharField(u'Наименование ', max_length=100)
+class sector(models.Model):
+    ge_objekt = models.ForeignKey('objekt', verbose_name = u'Объект')
+    ge_track = models.ForeignKey('track', verbose_name = u'Трасса')
+    ge_naimen = models.CharField(u'Наименование ', max_length=100)
+    
+    def __unicode__(self):
+        return self.ge_naimen
 # Create your models here.
