@@ -120,6 +120,10 @@ class sector(models.Model):
     ge_track = models.ForeignKey('track', verbose_name = u'Трасса')
     ge_naimen = models.CharField(u'Наименование ', max_length=100)
     
+    filter = ['objekt']
+    #ordering = ['ge_track']
+    
     def __unicode__(self):
         return self.ge_naimen
+    
 # Create your models here.

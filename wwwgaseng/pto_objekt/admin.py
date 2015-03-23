@@ -29,10 +29,13 @@ class consumerInline(admin.TabularInline):
 class trackInline(admin.TabularInline):
     model = track
     extra = 0
+    filter = ['ge_objekt']
     
 class sectorInline(admin.TabularInline):
     model = sector
     extra = 0
+    ordering = ['ge_track']
+    filter = ['ge_objekt']
 
     
 class ObjektAdmin(admin.ModelAdmin):
@@ -55,6 +58,7 @@ class ObjektAdmin(admin.ModelAdmin):
         (u'Обследование', {'fields': ['ge_dateobsled', 'ge_ispolnitel'], 'classes': ['collapse']})
                 
     ]
+    #sector.object.order_by('track')
     inlines = [regulir_ustroystvoInline, uzelInline, tapInline, pipeInline, consumerInline, 
                trackInline, sectorInline]
      
