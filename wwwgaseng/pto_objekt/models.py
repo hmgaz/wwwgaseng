@@ -3,6 +3,8 @@ from django.db import models
 from spr_pto2.models import spr_tobject, spr_regulir_ustroystvo, spr_uzel, spr_tap, spr_material, spr_pressure
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+from django.db.models import Q
+from matplotlib.ticker import SymmetricalLogLocator
 
 class osnovanie(models.Model):
       
@@ -109,19 +111,23 @@ class consumer(models.Model):
     ge_naimen = models.CharField(u'Наименование ', max_length=100)
     
 class track(models.Model):
-    ge_objekt = models.ForeignKey('objekt', verbose_name = u'Обьект')
+    ge_objekt = models.ForeignKey(objekt, verbose_name = u'Обьект')
     ge_naimen = models.CharField(u'Наименование ', max_length=100)
         
     def __unicode__(self):
         return self.ge_naimen
+    class Meta:
+        verbose_name = u'Трассу'
+        verbose_name_plural = u'Трассы'
     
 class sector(models.Model):
-    ge_objekt = models.ForeignKey('objekt', verbose_name = u'Объект')
-    ge_track = models.ForeignKey('track', verbose_name = u'Трасса')
+    ge_objekt = models.ForeignKey(objekt, verbose_name = u'Объект')
+    ge_track = models.ForeignKey(track, 
+                                # limit_choices_to = Q('ge_objekt__track'&'ge_objekt__sector'),
+                                 #limit_chices_to = {'ge_objekt' : F('sector__ge_objekt') ')}, 
+                                 verbose_name = u'Трасса')
     ge_naimen = models.CharField(u'Наименование ', max_length=100)
     
-    filter = ['objekt']
-    #ordering = ['ge_track']
     
     def __unicode__(self):
         return self.ge_naimen

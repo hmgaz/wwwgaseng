@@ -2,6 +2,9 @@
 from django.contrib import admin
 from pto_objekt.models import osnovanie , objekt, regulir_ustroystvo, uzel, tap, pipe, consumer, track , sector 
 from django.contrib.admin.helpers import Fieldset
+from django.core.context_processors import request
+from coverage import exclude
+from sqlalchemy.sql.expression import distinct
 
 class OsnovanieAdmin(admin.ModelAdmin):
     list_display = ('ge_osnovanie',)
@@ -29,14 +32,17 @@ class consumerInline(admin.TabularInline):
 class trackInline(admin.TabularInline):
     model = track
     extra = 0
-    filter = ['ge_objekt']
+   # filter = ['ge_objekt']
     
 class sectorInline(admin.TabularInline):
     model = sector
+    #.objects,valuest_list('ge_track')
     extra = 0
     ordering = ['ge_track']
-    filter = ['ge_objekt']
-
+    #ge_naimen = 'ge_track'
+    #filter = ['ge_track__objekt']
+    #distinct = ['ge_track']
+    
     
 class ObjektAdmin(admin.ModelAdmin):
         
@@ -58,7 +64,9 @@ class ObjektAdmin(admin.ModelAdmin):
         (u'Обследование', {'fields': ['ge_dateobsled', 'ge_ispolnitel'], 'classes': ['collapse']})
                 
     ]
-    #sector.object.order_by('track')
+    #sector.object.order_by('track') 
+    #list_filter = ['ge_objekt']
+    filter = ['ge_object__track']
     inlines = [regulir_ustroystvoInline, uzelInline, tapInline, pipeInline, consumerInline, 
                trackInline, sectorInline]
      
@@ -79,7 +87,7 @@ class consumerAdmin(admin.ModelAdmin):
     list_display = ('ge_objekt', 'ge_naimen')
 
 class trackAdmin(admin.ModelAdmin):
-    list_display = ('ge_objekt', 'ge_naimen')
+    list_display = ('ge_naimen',)
     inlines = [sectorInline]
           
 class sectorAdmin(admin.ModelAdmin):
