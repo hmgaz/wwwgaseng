@@ -1,0 +1,45 @@
+body {
+    font: 11pt Arial, Helvetica, sans-serif; /* Рубленый шрифт текста */
+    margin: 0; /* Отступы на странице */
+}
+
+h1 {
+    font-size: 24px; /* Размер шрифта */
+    margin: 0; /* Убираем отступы */
+    color: #102593; /* Цвет текста */
+}
+h2 {
+    margin-top: 0; /* Убираем отступ сверху */
+}
+
+.header { /* Верхний блок */
+    background: #1095f3; /* Цвет фона */
+    padding: 0; /* Поля вокруг текста */
+}
+
+table {
+    width: 100%; /* Ширина таблицы */
+    height: 44px; /* Минимальная высота */
+}
+
+td.logotip {
+    background: white url("images/logo_im.png") no-repeat;
+    width: 38px;
+} 
+td.naimen {
+    padding-left: 5%; /* Поле слева */
+} 
+td.login {
+    background: #8ae234;
+}     
+.content { /* */
+    margin: 10px 5px 20px 10px; /* Значения отступов */
+    padding: 5px; /* Поля вокруг текста */
+    border: 1px solid #333; /* Параметры рамки */
+}
+.footer { /* Нижний блок */
+    background: #8ae234; /* Цвет фона */
+    padding: 5px; /* Поля вокруг текста */
+    color: #fff; /* Цвет текста */
+    clear: left; /* Отменяем действие float */
+}

@@ -1,0 +1,104 @@
+<!doctype html>
+<html  class="no-js" lang="en">
+<head>
+   {% load staticfiles %}
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="{% static 'ge/css/normalize.css' %}" />
+   <link rel="stylesheet" href="{% static 'ge/css/foundation.css' %}" />
+   <link rel="stylesheet" href="{% static 'ge/css/app.css' %}" />
+   <script src="{% static 'ge/js/vendor/modernizr.js' %}"></script>
+   <title>{% block title %}Ханты-Мансийскгаз{% endblock %}</title>
+   
+   
+</head>
+{% load i18n %}
+<body>
+    <div class="off-canvas-wrap" data-offcanvas>
+         <div class="inner-wrap">
+           <nav class="tab-bar">
+               <section class="left-small">
+                 <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+               </section>
+               
+                <section class="middle tab-bar-section">
+                   <h1 class="title"> МП Ханты-Мансийскгаз</h1>
+                </section>
+                
+                <section class="right-small">
+                   <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+                </section>              
+           </nav>
+           
+           <aside class="left-off-canvas-menu">
+               <ul>
+                   <li><label>МЕНЮ</label></li> 
+                   <li><a href="#">Item 1</a></li>
+                   <li><a href="#">Item 2</a></li>
+               </ul>
+            </aside>
+            
+            <aside class="right-off-canvas-menu">
+              <ul class="off-canvas-list">
+                   <li><label>ПОЛЬЗОВАТЕЛЬ</label></li> 
+                   <li><a href="#">Item 1</a></li>
+                   <li><a href="#">Item 2</a></li>
+              </ul>
+            </aside>
+            
+            <section class="main-section">
+<!-- Контент приложения -->
+                  
+                  <p>Set in the year 0 F.E. ("Foundation Era"), The Psychohistorians opens on Trantor, the capital of the 12,000-year-old Galactic Empire. Though the empire appears stable and powerful, it is slowly decaying in ways that parallel the decline of the Western Roman Empire. Hari Seldon, a mathematician and psychologist, has developed psychohistory, a new field of science and psychology that equates all possibilities in large societies to mathematics, allowing for the prediction of future events.</p>
+                  
+                  
+                  
+
+      
+     
+     
+ 
+ <!--   
+   </div>
+   <div class="header" border="1">
+       <table cols ='3'>
+           <tr>
+              <td class="logotip"></td>
+              <td class="naimen"><h1>МП Ханты-Мансийскгаз</h1></td>
+              <td class="login">  
+                 {% if user.is_authenticated %}
+                    Добро пожаловать, {{ user.last_name }}  {{ user.first_name }}
+                   
+                 {% endif %}
+                 
+              </td>
+           </tr>
+       </table>
+       <h2>Меню</h2>
+   </div>
+        
+     <div class="content">
+        {% block content %}{% endblock %}
+     </div>
+   
+   <div class="footer">
+      {% block footer %}
+       <hr>
+       <p> ПРОверка </p>
+      {% endblock %} 
+   </div>
+
+ -->
+<!-- Закончено приложения --> 
+             </section>      
+            <a class="exit-off-canvas"></a>
+           </div>
+     </div>
+  <script src="{% static 'ge/js/vendor/jquery.js' %}"></script>
+  <script src="{% static 'ge/js/foundation/foundation.js' %}"></script>
+  <script src="{% static 'ge/js/foundation/foundation.offcanvas.js' %}"></script>
+  <script>
+    $(document).foundation();
+  </script>  
+</body>
+</html>
