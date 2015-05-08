@@ -1,0 +1,28 @@
+.tab-bar {
+	background: #1095f3;
+}
+
+.tab-bar h1 {
+	color: #102593;
+}
+
+.left-off-canvas-menu {
+	background: #1095f3;
+	
+}
+
+.right-off-canvas-menu {
+	background: #1095f3;
+	
+}
+
+ul.off-canvas-list li label {
+	color: #ffffff;
+	background: #1095f3;
+}
+ul.off-canvas-list li a {
+	color: #102593;
+}
+ul.off-canvas-list li a:hover {
+          background: #e9b96e; 
+}
