@@ -32,16 +32,29 @@
            
            <aside class="left-off-canvas-menu">
                <ul class="off-canvas-list">
-                   <li><label>МЕНЮ</label></li> 
-                   <li><a href="/admin/">Item 1</a></li>
-                   <li><a href="#">Item 2</a></li>
+                   <li><label>МЕНЮ</label></li>
+                   
+                   {% if perms.pto %}
+                       <li><label>ПТО</label></li>
+                       <li><a href="#">Обьекты Газ.</a></li>
+                   {% endif %}
+                                      
+                   <li><label>Приложения</label></li>
+                   <li><a href="/pto/">ПТО</a></li>
+                   <li><a href="#">ОКС</a></li>                    
+                   <li><a href="/admin/">АДМИН</a></li>                   
                </ul>
             </aside>
             
             <aside class="right-off-canvas-menu">
               <ul class="off-canvas-list">
-                   <li><label>ПОЛЬЗОВАТЕЛЬ</label></li> 
-                   <li><a href="#">Item 1</a></li>
+                   <li><label>ПОЛЬЗОВАТЕЛЬ</label></li>
+                   {% if user.is_authenticated %}
+                      <li><a href="/ge/logout/">Выйти</a></li>
+                   {% else %}
+                      <li><a href="/ge/login/">Войти</a></li>
+                   {% endif %}
+                   <li><a href="/login/">Item 1</a></li>
                    <li><a href="#">Item 2</a></li>
               </ul>
             </aside>

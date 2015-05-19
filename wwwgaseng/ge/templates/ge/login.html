@@ -1,0 +1,20 @@
+{% extends "ge/base.html" %}
+
+{% block title %}
+    login
+{% endblock %}
+
+{% block ge_content %}
+  <div class="row">
+    <div class="small-2 large-4 columns"><br>  </div>
+    <div class="small-4 large-4 columns">
+       <form action=" " method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="button round">Войти</button>
+       </form>
+    </div>
+    <div class="small-6 large-4 columns"> <br> </div>
+  </div>
+<br><br><br><br><br><br><br><br><br>
+{% endblock %}
