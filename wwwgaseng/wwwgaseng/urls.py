@@ -10,10 +10,11 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     
     #url(r'^pto/', include('pto_objekt.urls')),
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^ge/', include('ge.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+    #url(r'^ge/', include('ge.urls')),
     url(r'^pto/', include('pto.urls')),
-    url(r'^$', RedirectView.as_view(url='ge/')) #Переадресация с / на /ge/
+    url(r'^$', RedirectView.as_view(url='ge/')), #Переадресация с / на /ge/
     
     
 )

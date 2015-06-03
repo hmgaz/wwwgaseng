@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from pto_objekt.models import osnovanie , objekt, regulir_ustroystvo, uzel, tap, pipe, consumer, track , sector 
+from pto_objekt.models import objekt, regulir_ustroystvo, uzel, tap, pipe, consumer, track , sector 
 from django.contrib.admin.helpers import Fieldset
 from django.core.context_processors import request
 from coverage import exclude
 from sqlalchemy.sql.expression import distinct
 
-class OsnovanieAdmin(admin.ModelAdmin):
-    list_display = ('ge_osnovanie',)
+#class OsnovanieAdmin(admin.ModelAdmin):
+#    list_display = ('ge_osnovanie',)
     
 class regulir_ustroystvoInline(admin.TabularInline):
     model = regulir_ustroystvo
@@ -93,7 +93,7 @@ class trackAdmin(admin.ModelAdmin):
 class sectorAdmin(admin.ModelAdmin):
     list_display = ('ge_objekt', 'ge_naimen')
     
-admin.site.register(osnovanie, OsnovanieAdmin)
+#admin.site.register(osnovanie, OsnovanieAdmin)
 admin.site.register(objekt, ObjektAdmin)
 admin.site.register(regulir_ustroystvo, regulir_ustroystvoAdmin)
 admin.site.register(uzel, uzelAdmin)
