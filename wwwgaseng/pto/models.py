@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.utils.encoding import smart_text
+#from twisted.persisted.aot import Instance
+#from fileinput import filename
 
 
 #Обьекты газовой сети   -----------------------------------------------------------------------
@@ -159,6 +161,40 @@ class Pipe(models.Model):
     def __unicode__(self):
         return u"%s %s"%(self.ge_liter, self.ge_naimen)
 
+#Трасса
+class Track(models.Model):
+    ge_objekt = models.ForeignKey('objekt', verbose_name = u'Обьект')
+    ge_startPoint = models.ForeignKey('PointObjekt', verbose_name = u'Начальная точка',
+                                      related_name= 'startPoint')
+    ge_pipe = models.ForeignKey('Pipe', verbose_name = u'Труба')
+    ge_endPoint = models.ForeignKey('PointObjekt', verbose_name = u'Конечная точка',
+                                    related_name= 'endPoint')
+    ge_primech = models.TextField(u'Примечание', default = '-')
+    
+    class Meta:
+        verbose_name = u'Трасса '
+        verbose_name_plural = u'Трасса'
+        unique_together =(('ge_objekt', 'ge_startPoint'), ('ge_objekt', 'ge_pipe'),
+                          ('ge_objekt', 'ge_endPoint'))
+
+#Файлы Обьекты газовой сети 
+def objekt_upload_path(instance, filename):
+    
+    return u'pto/objekt/%s/%s' %(instance.ge_objekt_id, filename)
+   
+class ObjektFile(models.Model):
+    ge_objekt = models.ForeignKey('objekt', verbose_name = u'Обьект')
+    ge_objektFile = models.FileField(upload_to = objekt_upload_path)#, 
+                                     #storage= objekt_upload_path)
+    ge_uploaded_date = models.DateTimeField(auto_now_add = True)
+    
+    class Meta:
+        verbose_name = u'Документ '
+        verbose_name_plural = u'Документы, файлы обьекта'
+        
+    def __unicode__(self):
+        return u"%s %s"%(self.ge_objekt, self.ge_objektFile)
+   
 
 # Справочники -----------------------------------------------------------------------------
 

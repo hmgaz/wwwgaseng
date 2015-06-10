@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 from django.contrib import admin
 from pto.models import Spr_regulir_ustroystvo, Spr_uzel, Spr_tap, Spr_material, Spr_pressure, Spr_tobject
-from pto.models import Osnovanie, Objekt, PointObjekt, Regulir_ustroystvo, Uzel, Tap, Pipe
+from pto.models import Osnovanie, Objekt, PointObjekt, Regulir_ustroystvo, Uzel, Tap, Pipe, Track, ObjektFile
 
 class OsnovanieAdmin(admin.ModelAdmin):
     list_display = ('ge_osnovanie',)
@@ -49,6 +49,17 @@ class PipeInline(admin.TabularInline):
     fields = ('ge_objekt', 'ge_liter', 'ge_naimen', 'ge_godvvoda', 'ge_material',
               'ge_pressure', 'ge_dlina', 'ge_dlinavl', 'ge_dlinapl', 'ge_glubina',
               'ge_iznos', 'ge_iznosfakt', 'ge_oporamaterial', 'ge_oporakolvo', 'ge_primech')
+    extra = 0  
+    
+#Трасса
+class TrackAdmin(admin.ModelAdmin):
+    list_display = ('ge_objekt', 'ge_startPoint', 'ge_pipe','ge_endPoint', 'ge_primech')
+    fields = ('ge_objekt', 'ge_startPoint', 'ge_pipe', 'ge_endPoint', 'ge_primech')
+    
+class TrackInline(admin.TabularInline):
+    model = Track
+    fields = ('ge_objekt', 'ge_startPoint', 'ge_pipe', 'ge_endPoint', 'ge_primech')
+    raw_id_fields = ('ge_startPoint', 'ge_pipe', 'ge_endPoint')
     extra = 0     
 
 class ObjektAdmin(admin.ModelAdmin):
@@ -71,7 +82,7 @@ class ObjektAdmin(admin.ModelAdmin):
         (u'Обследование', {'fields': ['ge_dateobsled', 'ge_ispolnitel'], 'classes': ['collapse']})
                  
     ]
-    inlines = [Regulir_ustroystvoInline, TapInline, UzelInline, PipeInline]
+    inlines = [Regulir_ustroystvoInline, TapInline, UzelInline, PipeInline, TrackInline]
     
     
 admin.site.register(PointObjekt) 
@@ -81,6 +92,9 @@ admin.site.register(Uzel, UzelAdmin)
 admin.site.register(Objekt, ObjektAdmin)    
 admin.site.register(Osnovanie, OsnovanieAdmin)
 admin.site.register(Pipe, PipeAdmin) 
+admin.site.register(Track, TrackAdmin)
+admin.site.register(ObjektFile)
+
 
 
 #Справочники ПТО---------------------------------------------
