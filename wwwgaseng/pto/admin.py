@@ -62,6 +62,17 @@ class TrackInline(admin.TabularInline):
     raw_id_fields = ('ge_startPoint', 'ge_pipe', 'ge_endPoint')
     extra = 0     
 
+#Документы и файлы обьекта
+class ObjektFileAdmin(admin.ModelAdmin):
+    list_display = ('ge_objekt', 'ge_objektFile', 'ge_uploaded_date')
+    #fields = ('ge_objekt', 'ge_nomer', 'ge_uzel')
+    
+class ObjektFileInline(admin.TabularInline):
+    model = ObjektFile
+    fields = ('ge_objekt', 'ge_objektFile')
+    extra = 0  
+
+
 class ObjektAdmin(admin.ModelAdmin):
         
     list_display = ('pk','ge_osnovanie', 'ge_nomereestr', 'ge_naimenovanie', 'ge_naimenovaniekr')
@@ -82,7 +93,7 @@ class ObjektAdmin(admin.ModelAdmin):
         (u'Обследование', {'fields': ['ge_dateobsled', 'ge_ispolnitel'], 'classes': ['collapse']})
                  
     ]
-    inlines = [Regulir_ustroystvoInline, TapInline, UzelInline, PipeInline, TrackInline]
+    inlines = [Regulir_ustroystvoInline, TapInline, UzelInline, PipeInline, TrackInline, ObjektFileInline]
     
     
 admin.site.register(PointObjekt) 
@@ -93,7 +104,7 @@ admin.site.register(Objekt, ObjektAdmin)
 admin.site.register(Osnovanie, OsnovanieAdmin)
 admin.site.register(Pipe, PipeAdmin) 
 admin.site.register(Track, TrackAdmin)
-admin.site.register(ObjektFile)
+admin.site.register(ObjektFile, ObjektFileAdmin)
 
 
 

@@ -39,8 +39,7 @@ INSTALLED_APPS = (
     'ge',
     'pto',
     'oks',
-    'spr_pto2',
-    'pto_objekt',
+    
 )
 
 MIDDLEWARE_CLASSES = (
