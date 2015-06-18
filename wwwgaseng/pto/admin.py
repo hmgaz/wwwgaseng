@@ -51,6 +51,10 @@ class PipeInline(admin.TabularInline):
               'ge_iznos', 'ge_iznosfakt', 'ge_oporamaterial', 'ge_oporakolvo', 'ge_primech')
     extra = 0  
     
+#Точки
+class PointObjektAdmin(admin.ModelAdmin):
+    list_display = ('ge_objekt', 'ge_naimen', 'ge_nomer')
+    
 #Трасса
 class TrackAdmin(admin.ModelAdmin):
     list_display = ('ge_objekt', 'ge_startPoint', 'ge_pipe','ge_endPoint', 'ge_primech')
@@ -96,7 +100,7 @@ class ObjektAdmin(admin.ModelAdmin):
     inlines = [Regulir_ustroystvoInline, TapInline, UzelInline, PipeInline, TrackInline, ObjektFileInline]
     
     
-admin.site.register(PointObjekt) 
+admin.site.register(PointObjekt, PointObjektAdmin) 
 admin.site.register(Regulir_ustroystvo, Regulir_ustroystvoAdmin)
 admin.site.register(Tap, TapAdmin)
 admin.site.register(Uzel, UzelAdmin)

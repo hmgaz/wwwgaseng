@@ -22,7 +22,7 @@ class Osnovanie(models.Model):
 class Objekt(models.Model):
         
     ge_osnovanie = models.ForeignKey('Osnovanie', verbose_name = u'Основание')
-    ge_nomereestr = models.CharField(u'Номер реестра', max_length=10)
+    ge_nomereestr = models.CharField(u'Архивный номер', max_length=10)
     ge_nomeinvent = models.CharField(u'Инвентарный номер', max_length=10, 
                                      default = '-')
     ge_naimenovanie = models.CharField(u'Название', max_length=100)
@@ -64,7 +64,7 @@ class Objekt(models.Model):
         verbose_name_plural = u'Обьекты газовой сети'
     
     def __unicode__(self):
-        return u"ID=%d %s" %(self.pk, self.ge_naimenovaniekr)
+        return u"%s" %(self.ge_naimenovaniekr)
 
 #Точка обьекта    
 class PointObjekt(models.Model):
@@ -77,7 +77,7 @@ class PointObjekt(models.Model):
         verbose_name_plural = u'Точки обьекта'
        
     def __unicode__(self):
-        return u"%s Тип устройства=%s  Номер (литера)=%s" %(self.ge_objekt, self.ge_naimen, self.ge_nomer)
+        return u"%s %s %s" %(self.ge_naimen, self.ge_nomer, self.ge_objekt)
 
 #Регулирующее устройство    
 class Regulir_ustroystvo(PointObjekt):
@@ -99,15 +99,15 @@ class Regulir_ustroystvo(PointObjekt):
 
 #Задвижки(краны)  
 class Tap(PointObjekt):
-    ge_tap = models.ForeignKey('Spr_tap', verbose_name = u'Задвижки(краны)')
+    ge_tap = models.ForeignKey('Spr_tap', verbose_name = u'Отключающие устройства')
     
     class Meta:
-        verbose_name = u'Задвижка(кран)'
-        verbose_name_plural = u'Задвижки(краны)'
+        verbose_name = u'Отключающее устройство'
+        verbose_name_plural = u'Отключающие устройства'
                 
     def save(self, force_insert=False, force_update=False, using=None, 
         update_fields=None):
-        self.ge_naimen = u'Задвижка(кран)'
+        self.ge_naimen = u'Отключающее устройство'
         return PointObjekt.save(self, force_insert=force_insert, force_update=force_update,
                                  using=using, update_fields=update_fields)
             

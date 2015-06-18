@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for wwwgaseng project.
 
@@ -36,9 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ge',
-    'pto',
-    'oks',
+    'ge',  # Базавое приложени
+    'pto', # Проиложение для отдела ПТО
+    'oks', # Приложение для отдела ОКС
     
 )
 
